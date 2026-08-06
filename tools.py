@@ -15,4 +15,20 @@ def verificar_disponibilidad(programa: str) -> str:
         return f"Lo sentimos. No hay cupos disponibles para {programa} en este caso"
     return "No encuentro disponibilidad para {programa}"
 
-def registrar_contacto(nombre:str, telefono: int)
+def registrar_contacto(nombre:str, telefono: int):
+    contacto = {
+        "nombre": nombre,
+        "telefono": telefono
+    }
+    
+    archivo = "contactos.json"
+    
+    if os.path.exists(archivo):
+        try:
+            with open(archivo, "r") as f:
+                contactos = json.load(f)
+        except json.JSONDecodeError:
+            contactos = []
+            
+    else: 
+        contactos = []
