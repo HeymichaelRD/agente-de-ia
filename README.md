@@ -56,4 +56,14 @@ requirements.txt   # Dependencias del proyecto
 ## Datos
 
 - `contactos.json` se genera automáticamente al registrar contactos y **no se versiona** (está en `.gitignore`).
-- Los precios y la disponibilidad se definen en [knowledge_base.py](knowledge_base.py); para actualizarlos, edita ese archivo directamente.
+- Los precios y la disponibilidad se definen en [knowledge_base.py](knowledge_base.py); para actualizarlos, edita ese archivo directamente. El listado de programas en el system prompt ([prompts.py](prompts.py)) se genera automáticamente a partir de esos mismos datos, así que no requiere edición aparte.
+
+## Mejoras aplicadas sobre el proyecto base
+
+A partir del código entregado en la masterclass, se hicieron los siguientes ajustes:
+
+- **Fix:** eliminada una llamada de prueba a la API de Groq que se ejecutaba automáticamente al importar `app.py`, sin usarse y consumiendo cuota en cada arranque.
+- **Mejora:** normalización de nombres de programas (tildes, mayúsculas, espacios) en `consultar_precio` y `verificar_disponibilidad`, para que variaciones como "Análisis" o "análisis" coincidan igual.
+- **Mejora:** `contactos.json` ahora se guarda siempre junto al proyecto (ruta basada en la ubicación del script), en vez de depender del directorio desde el que se ejecute `python app.py`.
+- **Mejora:** el `SYSTEM_PROMPT` ahora incluye el listado exacto de programas disponibles (generado dinámicamente desde `knowledge_base.py`), para que el modelo use el nombre correcto al llamar las herramientas incluso si el cliente los menciona de forma informal o abreviada (ej. "la carrera de datos").
+- **Seguridad:** removido `contactos.json` (con datos reales de contacto) del historial de git, y agregado `*.json` a `.gitignore` para evitar que vuelva a versionarse.

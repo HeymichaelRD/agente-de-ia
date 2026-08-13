@@ -2,7 +2,6 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 import json
-from knowledge_base import PRECIOS, DISPONIBILIDAD
 
 from tools import consultar_precio, verificar_disponibilidad, registrar_contacto
 from prompts import SYSTEM_PROMPT
@@ -13,16 +12,6 @@ load_dotenv()
 client = OpenAI(
     api_key=os.getenv('GROQ_API_KEY_V2'),
     base_url="https://api.groq.com/openai/v1"
-)
-
-respuesta = client.chat.completions.create(
-    model="llama-3.3-70b-versatile",
-    messages=[
-        {
-            'role': 'user', 
-            'content': 'hola, esta funcionando'
-        }
-    ],
 )
 
 funciones_disponibles = {
@@ -77,6 +66,16 @@ def iniciar_conversacion():
 
         historial.append({"role": "assistant", "content": texto_respuesta})
         print(f"Agente: {texto_respuesta}\n")
+        
+#respuesta = client.chat.completions.create(#
+#    model="llama-3.3-70b-versatile",
+#    messages=[
+#        {
+#            'role': 'user', 
+#            'content': 'hola, esta funcionando'
+#        }
+#    ],
+#)
 
 if __name__ == "__main__":
     iniciar_conversacion()
