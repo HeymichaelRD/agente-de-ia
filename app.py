@@ -6,7 +6,7 @@ from knowledge_base import PRECIOS, DISPONIBILIDAD
 load_dotenv()
 
 client = OpenAI(
-    api_key=os.getenv('GROQ_API_KEY'),
+    api_key=os.getenv('GROQ_API_KEY_V2'),
     base_url="https://api.groq.com/openai/v1"
 )
 
