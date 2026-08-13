@@ -1,6 +1,7 @@
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
+import json
 from knowledge_base import PRECIOS, DISPONIBILIDAD
 
 from tools import consultar_precio, verificar_disponibilidad, registrar_contacto
