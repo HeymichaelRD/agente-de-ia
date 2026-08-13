@@ -27,7 +27,7 @@ respuesta = client.chat.completions.create(
 
 funciones_disponibles = {
     "consultar_precio": consultar_precio,
-    "verificar_disponiblidad": verificar_disponibilidad,
+    "verificar_disponibilidad": verificar_disponibilidad,
     "registrar_contacto": registrar_contacto
 }
 
